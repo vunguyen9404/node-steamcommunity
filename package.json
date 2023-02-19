@@ -1,14 +1,14 @@
 {
-	"name": "steamcommunity",
-	"version": "3.44.3",
+	"name": "@vgm-com/steamcommunity",
+	"version": "0.1.0",
 	"description": "Provides an interface for logging into and interacting with the Steam Community website",
 	"keywords": [
 		"steam",
 		"steam community"
 	],
-	"homepage": "https://github.com/DoctorMcKay/node-steamcommunity",
+	"homepage": "https://github.com/vunguyen9404/node-steamcommunity",
 	"bugs": {
-		"url": "https://github.com/DoctorMcKay/node-steamcommunity/issues"
+		"url": "https://github.com/vunguyen9404/node-steamcommunity/issues"
 	},
 	"license": "MIT",
 	"author": {
@@ -18,7 +18,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/DoctorMcKay/node-steamcommunity.git"
+		"url": "https://github.com/vunguyen9404/node-steamcommunity.git"
 	},
 	"dependencies": {
 		"async": "^2.6.3",

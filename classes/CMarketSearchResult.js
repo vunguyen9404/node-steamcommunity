@@ -1,6 +1,79 @@
 var SteamCommunity = require('../index.js');
 var Cheerio = require('cheerio');
 
+
+SteamCommunity.prototype.marketHistoryPrice = function (options, callback) {
+	const qs = {
+		appid: options.appid,
+		market_hash_name: options.market_hash_name,
+		currency: 1
+	};
+
+	this.httpRequest({
+		"uri": "https://steamcommunity.com/market/pricehistory/",
+		"qs": qs,
+		"headers": {
+			"referer": "https://steamcommunity.com/market/search"
+		},
+		"json": true
+	}, function(err, response, body) {
+		if (err) {
+			callback(err);
+			console.log("Response: ", response);
+			return;
+		}
+
+		if(!body.success) {
+			callback(new Error("Success is not true"));
+			return;
+		}
+		if (!body.prices) {
+			callback(new Error("Can't get result"));
+			return;
+		}
+		callback(null, body.prices);
+	}, "steamcommunity");
+
+}
+
+SteamCommunity.prototype.marketSearchWithJson = function (options, callback) {
+
+	const qs = {
+		query: options.query,
+		start: options.start,
+		count: options.count,
+		appid: options.appid,
+	    search_descriptions: 0,
+		sort_column: "popular",
+		sort_dir: "desc",
+		norender: 1
+	}
+
+	this.httpRequest({
+		"uri": "https://steamcommunity.com/market/search/render/",
+		"qs": qs,
+		"headers": {
+			"referer": "https://steamcommunity.com/market/search"
+		},
+		"json": true
+	}, function(err, response, body) {
+		if (err) {
+			callback(err);
+			return;
+		}
+
+		if(!body.success) {
+			callback(new Error("Success is not true"));
+			return;
+		}
+		if (!body.results) {
+			callback(new Error("Can't get result"));
+			return;
+		}
+		callback(null, body.results);
+	}, "steamcommunity");
+}
+
 SteamCommunity.prototype.marketSearch = function(options, callback) {
 	var qs = {};
 
