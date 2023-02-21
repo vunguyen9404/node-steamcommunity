@@ -19,7 +19,7 @@ SteamCommunity.prototype.marketHistoryPrice = function (options, callback) {
 	}, function(err, response, body) {
 		if (err) {
 			callback(err);
-			console.log("Response: ", response);
+			console.log("Response: ", body);
 			return;
 		}
 
