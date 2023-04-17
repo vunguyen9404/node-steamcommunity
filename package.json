@@ -1,6 +1,6 @@
 {
 	"name": "@vgm-com/steamcommunity",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Provides an interface for logging into and interacting with the Steam Community website",
 	"keywords": [
 		"steam",
@@ -21,6 +21,7 @@
 		"url": "https://github.com/vunguyen9404/node-steamcommunity.git"
 	},
 	"dependencies": {
+		"@vgm-com/steamcommunity": "^0.1.1",
 		"async": "^2.6.3",
 		"cheerio": "0.22.0",
 		"image-size": "^0.8.2",

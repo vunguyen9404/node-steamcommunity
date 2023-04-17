@@ -621,7 +621,7 @@ SteamCommunity.prototype.getUserInventoryContents = function(userID, appID, cont
  * @param {string} proxy
  * @param {function} callback
  */
-SteamCommunity.prototype.getUserInventoryContentsWithProxy = function(userID, appID, contextID, tradableOnly, language, proxy, callback) {
+SteamCommunity.prototype.getUserInventoryContentsWithProxy = function(userID, appID, contextID, tradableOnly, language, proxy, count, callback) {
 	if (typeof language === 'function') {
 		callback = language;
 		language = "english";
@@ -649,7 +649,7 @@ SteamCommunity.prototype.getUserInventoryContentsWithProxy = function(userID, ap
 			},
 			"qs": {
 				"l": language, // Default language
-				"count": 1000, // Max items per 'page'
+				"count": count, // Max items per 'page'
 				"start_assetid": start
 			},
 			"json": true,
