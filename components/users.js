@@ -642,7 +642,7 @@ SteamCommunity.prototype.getUserInventoryContentsWithProxy = function(userID, ap
 	get([], []);
 
 	function get(inventory, currency, start) {
-		const randomNumber = _.random(0, 249);
+		const randomNumber = _.random(0, proxyList.length - 1);
 		const proxy = proxyList[randomNumber];
 		self.httpRequest({
 			"uri": "https://steamcommunity.com/inventory/" + userID.getSteamID64() + "/" + appID + "/" + contextID,
@@ -770,7 +770,7 @@ SteamCommunity.prototype.getUserInventoryContentsPaginationWithProxy = function(
 	get([], [], startAsset);
 
 	function get(inventory, currency, start) {
-		const randomNumber = _.random(0, 249);
+		const randomNumber = _.random(0, proxyList.length - 1);
 		const proxy = proxyList[randomNumber];
 		self.httpRequest({
 			"uri": "https://steamcommunity.com/inventory/" + userID.getSteamID64() + "/" + appID + "/" + contextID,
