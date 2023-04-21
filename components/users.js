@@ -839,7 +839,7 @@ SteamCommunity.prototype.getUserInventoryContentsPaginationWithProxy = function(
 				}
 			}
 
-			callback(null, inventory, currency, body.total_inventory_count);
+			callback(null, inventory, currency, body.total_inventory_count, body.last_assetid, body.more_items);
 		}, "steamcommunity");
 	}
 
