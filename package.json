@@ -1,6 +1,6 @@
 {
 	"name": "@vgm-com/steamcommunity",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Provides an interface for logging into and interacting with the Steam Community website",
 	"keywords": [
 		"steam",
@@ -25,6 +25,7 @@
 		"async": "^2.6.3",
 		"cheerio": "0.22.0",
 		"image-size": "^0.8.2",
+		"lodash": "^4.17.21",
 		"node-bignumber": "^1.2.1",
 		"request": "^2.88.0",
 		"steam-totp": "^1.5.0",

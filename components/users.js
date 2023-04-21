@@ -2,7 +2,7 @@ const Cheerio = require('cheerio');
 const Crypto = require('crypto');
 const imageSize = require('image-size');
 const SteamID = require('steamid');
-
+const _ = require("lodash");
 const SteamCommunity = require('../index.js');
 
 const CEconItem = require('../classes/CEconItem.js');
@@ -618,10 +618,10 @@ SteamCommunity.prototype.getUserInventoryContents = function(userID, appID, cont
  * @param {int} contextID - The ID of the "context" within the game you want to retrieve
  * @param {boolean} tradableOnly - true to get only tradable items and currencies
  * @param {string} [language] - The language of item descriptions to return. Omit for default (which may either be English or your account's chosen language)
- * @param {string} proxy
+ * @param {string[]} proxyList
  * @param {function} callback
  */
-SteamCommunity.prototype.getUserInventoryContentsWithProxy = function(userID, appID, contextID, tradableOnly, language, proxy, count, callback) {
+SteamCommunity.prototype.getUserInventoryContentsWithProxy = function(userID, appID, contextID, tradableOnly, language, proxyList, count, callback) {
 	if (typeof language === 'function') {
 		callback = language;
 		language = "english";
@@ -642,6 +642,8 @@ SteamCommunity.prototype.getUserInventoryContentsWithProxy = function(userID, ap
 	get([], []);
 
 	function get(inventory, currency, start) {
+		const randomNumber = _.random(0, 249);
+		const proxy = proxyList[randomNumber];
 		self.httpRequest({
 			"uri": "https://steamcommunity.com/inventory/" + userID.getSteamID64() + "/" + appID + "/" + contextID,
 			"headers": {
