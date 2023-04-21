@@ -1,6 +1,6 @@
 {
 	"name": "@vgm-com/steamcommunity",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"description": "Provides an interface for logging into and interacting with the Steam Community website",
 	"keywords": [
 		"steam",
