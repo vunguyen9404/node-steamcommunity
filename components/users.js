@@ -861,6 +861,79 @@ SteamCommunity.prototype.getUserInventoryContentsPaginationWithProxy = function(
 	}
 };
 
+
+SteamCommunity.prototype.getPartnerInventoryWithPaginationAndProxy = function(partnerID, appID, contextID, proxyList, startAsset, callback) {
+	var self = this;
+
+	if (typeof partnerID === 'string') {
+		partnerID = new SteamID(partnerID);
+	}
+
+	get([], [], startAsset);
+
+	function get(inventory, currency, start) {
+		const random = _.random(0, proxyList.length - 1)
+		const proxy = proxyList[random];
+		self.httpRequest({
+			"uri": `https://steamcommunity.com/tradeoffer/new/partnerinventory`,
+			"headers": {
+				"Referer": "https://steamcommunity.com/tradeoffer/new/"
+			},
+			"qs": {
+				"sessionid": self._community.getSessionID(),
+				"partner": partnerID.getSteamID64(),
+				"appid": appID,
+				"contextid": contextID,
+				"start": start,
+			},
+			"json": true,
+			"proxy": proxy
+		}, function(err, response, body) {
+			if (err) {
+				callback(err);
+				return;
+			}
+
+			// Handle case empty inventory
+			if (body && body.success && !body.rgInventory && !body.rgDescriptions) {
+				callback(null, [], []);
+
+				return;
+			}
+
+			if (!body || !body.success || !body.rgInventory || !body.rgDescriptions || !body.rgCurrency) {
+				if (body) {
+					callback(new Error(body.Error || body.error || "Malformed response"));
+				} else {
+					callback(new Error("Malformed response"));
+				}
+
+				return;
+			}
+
+			var i;
+			for (i in body.rgInventory) {
+				if (!body.rgInventory.hasOwnProperty(i)) {
+					continue;
+				}
+
+				inventory.push(new CEconItem(body.rgInventory[i], body.rgDescriptions, contextID));
+			}
+
+			for (i in body.rgCurrency) {
+				if (!body.rgCurrency.hasOwnProperty(i)) {
+					continue;
+				}
+
+				currency.push(new CEconItem(body.rgInventory[i], body.rgDescriptions, contextID));
+			}
+
+			callback(null, inventory, currency, body.more_start);
+		}, "steamcommunity");
+	}
+};
+
+
 /**
  * Upload an image to Steam and send it to another user over Steam chat.
  * @param {SteamID|string} userID - Either a SteamID object or a string that can parse into one
