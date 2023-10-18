@@ -1,7 +1,14 @@
 {
 	"name": "@vgm-com/steamcommunity",
-	"version": "0.1.7",
+	"version": "0.1.8",
 	"description": "Provides an interface for logging into and interacting with the Steam Community website",
+	"files": [
+		"/classes",
+		"/components",
+		"/examples",
+		"/resources",
+		"/index.js"
+	],
 	"keywords": [
 		"steam",
 		"steam community"
@@ -21,7 +28,7 @@
 		"url": "https://github.com/vunguyen9404/node-steamcommunity.git"
 	},
 	"dependencies": {
-		"@vgm-com/steamcommunity": "^0.1.1",
+		"@vgm-com/steamcommunity": "^0.1.7",
 		"async": "^2.6.3",
 		"cheerio": "0.22.0",
 		"image-size": "^0.8.2",
@@ -30,7 +37,7 @@
 		"request": "^2.88.0",
 		"steam-totp": "^1.5.0",
 		"steamid": "^1.1.3",
-		"xml2js": "^0.4.22"
+		"xml2js": "^0.6.2"
 	},
 	"devDependencies": {
 		"steam-session": "^1.2.3"
