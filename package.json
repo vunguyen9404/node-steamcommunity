@@ -1,6 +1,6 @@
 {
 	"name": "@vgm-com/steamcommunity",
-	"version": "0.2.0",
+	"version": "0.1.10",
 	"description": "Provides an interface for logging into and interacting with the Steam Community website",
 	"files": [
 		"/classes",
